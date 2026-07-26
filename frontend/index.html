@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameSense — Automated Game Recognition &amp; Hashtag Suggestion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="28" height="28" rx="7" stroke="currentColor" stroke-width="2"/>
+            <circle cx="16" cy="16" r="5.5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="16" cy="16" r="1.6" fill="currentColor"/>
+            <path d="M16 6.5V9.5M16 22.5V25.5M6.5 16H9.5M22.5 16H25.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-name">GameSense</span>
+      </div>
+      <div class="status-pill checking" id="statusPill">
+        <span class="status-dot" id="statusDot"></span> <span id="statusText">Checking model…</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>Detect the game.<br>Suggest the tags.</h1>
+      <p class="hero-sub">
+        Upload a gameplay screenshot — an EfficientNet-B0 classifier identifies the
+        title and returns ready-to-use stream hashtags in seconds.
+      </p>
+    </section>
+
+    <main>
+      <section class="upload-card">
+        <div class="dropzone" id="dropzone" tabindex="0">
+          <input type="file" id="fileInput" accept="image/*" hidden>
+
+          <span class="corner corner-tl" aria-hidden="true"></span>
+          <span class="corner corner-tr" aria-hidden="true"></span>
+          <span class="corner corner-bl" aria-hidden="true"></span>
+          <span class="corner corner-br" aria-hidden="true"></span>
+          <span class="scan-line" aria-hidden="true"></span>
+
+          <div id="dropContent" class="drop-content">
+            <svg class="drop-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="9" width="32" height="24" rx="3" stroke="currentColor" stroke-width="2"/>
+              <path d="M4 27L14 18L21 24L28 17L36 25" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="14" cy="16" r="2.5" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <p class="drop-title">Drop a gameplay screenshot</p>
+            <p class="drop-sub">or click to browse your files</p>
+          </div>
+          <img id="previewImg" class="preview-img" alt="Preview" hidden>
+        </div>
+
+        <button id="predictBtn" class="btn-primary" disabled>
+          <span>Detect Game</span>
+        </button>
+
+        <div class="supported">
+          <span class="supported-label">Supported titles</span>
+          <div class="chip-grid">
+            <span class="title-chip">Among Us</span>
+            <span class="title-chip">Apex Legends</span>
+            <span class="title-chip">Fortnite</span>
+            <span class="title-chip">Forza Horizon</span>
+            <span class="title-chip">Free Fire</span>
+            <span class="title-chip">Genshin Impact</span>
+            <span class="title-chip">God of War</span>
+            <span class="title-chip">Minecraft</span>
+            <span class="title-chip">Roblox</span>
+            <span class="title-chip">Terraria</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="result-card" id="resultCard" hidden>
+        <div class="result-header">
+          <span class="result-label">Detected Game</span>
+          <h2 id="gameName">—</h2>
+          <div class="confidence-row">
+            <div class="confidence-bar">
+              <div id="confidenceFill" class="confidence-fill"></div>
+            </div>
+            <span id="confidenceText" class="confidence-text"></span>
+          </div>
+        </div>
+
+        <div class="hashtags-block">
+          <div class="hashtags-header">
+            <span>Suggested hashtags</span>
+            <button id="copyBtn" class="btn-ghost">Copy</button>
+          </div>
+          <div class="hashtags" id="hashtags"></div>
+        </div>
+
+        <details class="top-preds">
+          <summary>Other possibilities</summary>
+          <ul id="topPredsList"></ul>
+        </details>
+      </section>
+
+      <div id="errorBox" class="error-box" hidden></div>
+      <div id="loadingBox" class="loading-box" hidden>
+        <span class="spinner"></span> Analyzing screenshot…
+      </div>
+    </main>
+
+    <footer>
+      <p>Course project prototype (SE334 — AI Lab) · EfficientNet-B0 · 10-class gameplay screenshot classifier</p>
+    </footer>
+
+  </div>
+<script src="script.js"></script>
+</body>
+</html>
