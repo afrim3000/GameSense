@@ -29,7 +29,7 @@ from download_model import ensure_model_files
 # ------------------------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "model" / "efficientnet_b0_gameplay.onnx"
-FRONTEND_DIR = BASE_DIR.parent / "frontend"
+FRONTEND_DIR = BASE_DIR / "frontend"
 
 # ------------------------------------------------------------------
 # Model / preprocessing config — must match the training notebook exactly
@@ -167,7 +167,7 @@ async def health():
 
 # Serve the frontend (index.html, style.css, script.js) as static files.
 # Mounted last so it doesn't shadow the /api routes above.
-app.mount("", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
+app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
 
 
 if __name__ == "__main__":
