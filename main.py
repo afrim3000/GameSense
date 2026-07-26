@@ -167,7 +167,7 @@ async def health():
 
 # Serve the frontend (index.html, style.css, script.js) as static files.
 # Mounted last so it doesn't shadow the /api routes above.
-app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
+app.mount("", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
 
 
 if __name__ == "__main__":
