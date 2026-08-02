@@ -123,5 +123,4 @@ This project is licensed under the MIT License — see [`LICENSE`](./LICENSE) fo
 
 ## Authors & Contributors
 
-- S. M. Nihal Ahmed
 - Afrim Hossen Khan
