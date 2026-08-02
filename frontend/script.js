@@ -19,7 +19,7 @@ let selectedFile = null;
 let modelReady = false;
 let healthPollId = null;
 
-// ---- Fetch with a hard timeout, so a stalled request can never spin forever ----
+// --- Fetch with a hard timeout, so a stalled request can never spin forever ---
 function fetchWithTimeout(url, options = {}, timeoutMs = 30000) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
