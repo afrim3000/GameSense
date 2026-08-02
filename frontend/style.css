@@ -44,7 +44,7 @@ html, body {
   gap: 22px;
 }
 
-/* ---------- Top bar ---------- */
+/* --------- Top bar --------- */
 .topbar {
   display: flex;
   align-items: center;
